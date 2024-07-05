@@ -1,8 +1,6 @@
 <?php
 namespace ClarionApp\SupervisorManager;
 
-use Illuminate\Support\Facades\Process;
-
 class SupervisorManager
 {
     protected $configPath;
@@ -59,38 +57,38 @@ files = {$this->configPath}/conf.d/*.conf
 
     public function reloadSupervisor()
     {
-        Process::run("supervisorctl -c {$this->configPath}/supervisord.conf reread");
-        Process::run("supervisorctl -c {$this->configPath}/supervisord.conf update");
+        shell_exec("supervisorctl -c {$this->configPath}/supervisord.conf reread");
+        shell_exec("supervisorctl -c {$this->configPath}/supervisord.conf update");
     }
 
     public function startProgram($programName)
     {
-        Process::run("supervisorctl -c {$this->configPath}/supervisord.conf start {$programName}:*");
+        shell_exec("supervisorctl -c {$this->configPath}/supervisord.conf start {$programName}:*");
     }
 
     public function stopProgram($programName)
     {
-        Process::run("supervisorctl -c {$this->configPath}/supervisord.conf stop {$programName}:*");
+        shell_exec("supervisorctl -c {$this->configPath}/supervisord.conf stop {$programName}:*");
     }
 
     public function restartProgram($programName)
     {
-        Process::run("supervisorctl -c {$this->configPath}/supervisord.conf restart {$programName}:*");
+        shell_exec("supervisorctl -c {$this->configPath}/supervisord.conf restart {$programName}:*");
     }
 
     public function startSupervisord()
     {
-        Process::run("supervisord -c {$this->configPath}/supervisord.conf");
+        shell_exec("supervisord -c {$this->configPath}/supervisord.conf");
     }
 
     public function stopSupervisord()
     {
-        Process::run("supervisorctl -c {$this->configPath}/supervisord.conf shutdown");
+        shell_exec("supervisorctl -c {$this->configPath}/supervisord.conf shutdown");
     }
 
     public function isSupervisordRunning()
     {
-        $result = Process::run("supervisorctl -c {$this->configPath}/supervisord.conf status");
-        return $result->successful();
+        $result = shell_exec("supervisorctl -c {$this->configPath}/supervisord.conf status");
+        return $result;
     }
 }
