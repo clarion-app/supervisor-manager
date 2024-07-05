@@ -7,9 +7,9 @@ class SupervisorManager
 {
     protected $configPath;
 
-    public function __construct()
+    public function __construct($configPath)
     {
-        $this->configPath = storage_path('supervisor');
+        $this->configPath = $configPath;
         $this->ensureDirectoryExists($this->configPath);
         $this->ensureDirectoryExists("{$this->configPath}/conf.d");
     }
