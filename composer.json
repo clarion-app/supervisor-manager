@@ -1,0 +1,26 @@
+{
+    "name": "clarion-app/supervisor-manager",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ClarionApp\\SupervisorManager\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tim Schwartz",
+            "email": "tim@metaverse.systems"
+        }
+    ],
+    "require": {
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ClarionApp\\Backend\\SupervisorManagerServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
